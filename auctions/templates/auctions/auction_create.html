@@ -1,0 +1,12 @@
+{% extends 'auctions/layout.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h2> Sell </h2>
+<form method="POST" action="{% url 'sell' %}" enctype='multipart/form-data'>
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input type='submit' value='Save' />
+</form>
+{% endblock content %}

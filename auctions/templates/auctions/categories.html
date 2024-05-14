@@ -1,0 +1,47 @@
+{% extends 'auctions/layout.html' %}
+{% load static %}
+
+<!--shows all the details of the auction plus comments-->
+{% block content %}
+
+
+<div class="row overflow-auto" style="margin-bottom: 30px">
+    <!--Column for Categories-->
+    <div class="col-sm">
+        <h2> Categories </h2>
+
+        {% if categories|length %}
+        {% comment %}
+        variable is not empty
+        {% endcomment %}
+
+
+        {% for c in categories %}
+        {% if c.pk == selected %}
+        <a href="{% url 'categories' c.pk %}" class="list-group-item list-group-item-action active">{{ c.title }}</a>
+        {% else %}
+        <a href="{%url 'categories' c.pk %}" class="list-group-item list-group-item-action">{{ c.title }}</a>
+        {% endif %}
+        {% endfor %}
+
+        {% else %}
+        <!--variable is empty-->
+        No Categories are defined in the Database
+        {% endif %}
+    </div>
+
+    <div class="col-sm">
+        <h2> Sub Categories </h2>
+        <div>
+            {% for s in subs %}
+
+            <a href="#" class="list-group-item list-group-item-action">{{ s.denomination }}</a>
+
+            {% endfor %}
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock content%}

@@ -1,0 +1,36 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+
+
+{% block body %}
+<h2 class="center_h2">Active Listings</h2>
+
+
+<div class="row">
+
+    {% for auction in auctions %}
+    <div class="card border-primary mb-3" style="width: 200px; margin : 5px;">
+        <img class="card-img-top" src="{{auction.image.url}}" alt={{item}}>
+        <div class="card-body">
+            <!--h5 class="card-title">{{auction}}</h5-->
+            <a href="{%url 'auction_details' auction.id %}">
+                <p class="card-text">{{auction}}</p>
+            </a>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Start Bid: {{auction.start_bid}} <br> Bid: {{auction.bid}}</small>
+
+            <a href="{%url 'auction_details' auction.id %}" class="btn btn-primary">Bid Now</a>
+        </div>
+    </div>
+
+    {% empty %}
+    <div class="center_h2" style="padding: 70px 0">
+        <button type="button" class="btn btn-primary">
+            <span class="badge badge-warning">Nothing selling </span>
+        </button>
+    </div>
+    {% endfor%}
+
+</div>
+{% endblock %}

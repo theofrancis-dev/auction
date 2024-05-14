@@ -1,0 +1,28 @@
+{% extends 'auctions/layout.html' %}
+{% load static %}
+{% block content %}
+
+<h2 class="center_h2"> Watch List</h2>
+{% for watch in watchlist %}
+<div class="row overflow-auto" style="margin-bottom: 30px">
+    <div class="col-2">
+        <img class="imgWatch" src="{{watch.auction.image.url}}" alt="item">
+    </div>
+    <div class="col-8">
+        <a href="{%url 'auction_details' watch.auction.id %}">{{watch}}</a>
+
+    </div>
+    <div class="col-2">
+        <a class="btn btn-primary" href="{% url 'remove_watch' watch.id %}" role="button">Remove</a>
+    </div>
+</div>
+<hr>
+{%empty%}
+<div class="center_h2" style="padding: 70px 0">
+    <button type="button" class="btn btn-primary">
+        <span class="badge badge-warning">Empty List </span>
+    </button>
+</div>
+{% endfor %}
+
+{% endblock content%}

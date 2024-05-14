@@ -1,0 +1,35 @@
+{% extends 'auctions/layout.html' %}
+{% load static %}
+
+<!--shows all the details of the auction plus comments-->
+{% block content %}
+
+
+<div class="row overflow-auto" style="margin-bottom: 30px">
+    <!--Column for Categories-->
+    <div class="col-sm">
+        <h2 class="center_h2"> Auctions in {{category}}</h2>
+        <div>
+            {% for auction in auctions %}
+            <a href="{% url 'auction_details' auction.id %}" class="list-group-item list-group-item-action">
+                <div class="">
+                    <!--img class="img-fluid image-parent" src="{{auction.image.url}}" alt="item"-->
+                    <img class="imgByCat" src="{{auction.image.url}}" alt="item">
+                    {{ auction }}
+                    | <b>Current bid:</b> {{auction.bid}}
+                </div>
+            </a>
+
+            {%empty%}
+            <div class="center_h2" style="padding: 70px 0">
+                <button type="button" class="btn btn-primary">
+                    <span class="badge badge-warning">No Auctions in this Category are found! </span>
+                </button>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock content%}

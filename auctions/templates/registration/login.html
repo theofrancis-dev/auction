@@ -1,0 +1,16 @@
+{% extends 'auctions/layout.html' %}
+
+{% block content %}
+
+<div class="row center_h2">
+    <div class="login">
+        <h2 style="margin-top:20px;margin-bottom:20px">Edx ECommerce Login (new)</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <!--Render the form within paragraph <p> tags-->
+            <button type="submit" class="btn btn-primary btn_login"> Log In </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

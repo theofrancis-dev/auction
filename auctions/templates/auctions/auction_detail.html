@@ -1,0 +1,91 @@
+{% extends 'auctions/layout.html' %}
+{% load static %}
+
+<!--shows all the details of the auction plus comments-->
+{% block content %}
+<br>
+
+<h4>Category: {{ auction.category }} {{ auction.subCategory }}</h4>
+
+<h5> {{ auction.product }} </h5>
+<p>
+    <b>description:</b>
+    {{ auction.description }}
+</p>
+
+<div class="row">
+    <div class="col">
+        <img class="auctionImage" src="{{auction.image.url}}">
+    </div>
+
+    <div class="col">
+        <br>
+        <i><b>listed by:</b> {{ auction.listed_by }}</i>
+        <i><b>start bid:</b> {{ auction.start_bid}}
+            <i><b>last bid:</b> {{auction.bid }} </i>
+
+            <p>
+                <div>
+                    <form class="form-inline" action="" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="inputPassword2" class="sr-only">Password</label>
+                            {% if auction.bid < auction.start_bid %}
+                            <input name="newbid" type="number" min="{{ auction.start_bid }}" step="0.10"
+                                class="form-control" placeholder="{{auction.bid}}">
+                            {% else %}
+                            <input name="newbid" type="number" min="{{ auction.bid }}" step="0.10" class="form-control"
+                                placeholder="{{auction.bid}}">
+                            {%endif%}
+
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-2">Bid Now</button>
+                    </form>
+                </div>
+
+                {% if auction.winner.username  %}
+                <br> Highest bidder: <i> {{auction.winner.username}}</i></maximum><br>
+
+                {% else %}
+                no bids received yet
+                {% endif %}
+            </p>
+
+            {% if not auction.ended %}
+            <i>auction ended by: {{ auction.ended_on }}</i>
+            <div>
+                <a href="{% url 'add_to_watch_list' auction.id %}" class="btn btn-primary btn-lg" role="button"
+                    aria-disabled="false">Add to My Watch List</a>
+
+            </div>
+            {% else %}
+            <i>Auction already ended</i>
+            {% endif %}
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm">
+        <form action="{% url 'new_comment' auction.id %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="newComment">Comment</label>
+                <input type="text" class="form-control" id="new_comment_id" placeholder="My comment" name="comment">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-sm">
+        {% for comment in all_comments %}
+        <li>
+            {{ comment }}
+        </li>
+        {% empty %}
+        <div> No comments for this auction</div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

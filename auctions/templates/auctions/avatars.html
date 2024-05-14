@@ -1,0 +1,18 @@
+{% extends 'auctions/layout.html' %}
+{% block head%}
+{% endblock %}
+
+{% block content%}
+
+<div class="center_h2">
+  <h2>Select your avatar</h2>
+</div>
+<div class="container2">
+  {% for avatar in avatars %}
+  <a href="{% url 'change_avatar' avatar.id %}"><img class="avatar" src="{{ avatar.url }}" alt="avatar"></a>
+
+  {% empty %}
+  <a href="{% url 'set_avatars'%}">No avatars in the base. Click to initialize</a>
+  {% endfor %}
+</div>
+{% endblock %}

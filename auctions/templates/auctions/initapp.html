@@ -1,0 +1,15 @@
+{% extends "auctions/layout.html" %} 
+{% load static %}
+{% block content %}
+<div>
+<h3> Application Initialization</h3>
+
+<h4>Categories in database: {{ total_categories }}</h4> 
+<h4>Sub Categories in database: {{ total_sub }}</h4>
+<form action="{% url 'initapp' %}" method="post">  
+    {% csrf_token %}  
+    <button> Init Database with Categories and Subcategories</button>
+</form>
+
+</div>
+{% endblock content %}

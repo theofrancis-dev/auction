@@ -1,0 +1,89 @@
+   /* Add some padding on document's body to prevent the content
+    to go underneath the header and footer */
+    .avatar {
+        margin : 5px;
+        border: 2px solid blue;
+        border-radius: 25px;
+        -webkit-box-shadow: 9px 9px 15px -4px rgba(0,0,0,0.43);
+        -moz-box-shadow: 9px 9px 15px -4px rgba(0,0,0,0.43);
+        box-shadow: 9px 9px 15px -4px rgba(0,0,0,0.43);        
+        width:50px;height:50px;
+    }
+    
+   body {
+       padding-top: 60px;
+       padding-bottom: 40px;   
+       margin-bottom: 100px; 
+   }
+
+   .footer-bg {
+       background-color: lightblue;
+       padding: 10px 15px;
+       background-color: #f5f5f5;
+       border-top: 1px solid #ddd;
+       border-bottom-right-radius: 3px;
+       border-bottom-left-radius: 3px;
+   }
+
+  .setscroll {
+      height : 600px;
+      overflow : hidden;
+      overflow-y: scroll;
+  }
+
+.container2 {
+    display : flex;
+    flex-wrap: wrap;
+}
+
+.center_h2 {
+    display : grid;
+    place-items: center;
+    margin-top: 20px;
+}
+
+.welcome {
+    color : #171717;
+    margin-top : 5px;
+}
+
+.login {
+    background-color: lightblue;
+    margin-top: 50px;
+    border-radius: 10px;
+    border-color: green;
+    display : grid;
+    place-items: center;
+    width:50%;
+}
+
+.btn_login {
+    margin-left : 20px;
+    margin-bottom: 20px;
+    /*position: absolute;*/
+    right: 0px;
+    width: 300px;
+    border: 3px solid #73AD21;
+    padding: 10px;
+}
+
+.auctionImage {
+    max-width: 200px;
+    margin-top : 20px;
+    border: 3px solid lightslategray;
+}
+
+.imgWatch {
+    max-width: 50px;    
+    border: 3px solid lightslategray;
+}
+
+.imgByCat {
+    max-width: 100px;    
+    border: 3px solid lightslategray;
+}
+
+.card-columns {
+    @include media-breakpoint-only(lg) {
+    column-count: 4;
+}

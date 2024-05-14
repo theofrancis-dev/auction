@@ -1,0 +1,55 @@
+{% extends 'auctions/layout.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="row">
+
+    {% for auction in items %}
+
+    {% if auction.ended %}
+    <div class="card border-primary mb-3 bg-warning" style="width: 200px; margin : 5px;">
+        <img class="card-img-top" src="{{auction.image.url}}" alt={{item}}>
+        <div class="card-body">
+            <h5 class="card-title">This Auction has Ended.</h5>
+            <p class="card-text">
+                <a href="{%url 'auction_details' auction.id %}">
+                    {{auction}}
+                </a>
+            </p>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Bid: {{auction.bid}} </small>
+            
+        </div>
+    </div>
+    {% else %}
+    <div class="card border-primary mb-3" style="width: 200px; margin : 5px;">
+        <img class="card-img-top" src="{{auction.image.url}}" alt={{item}}>
+        <div class="card-body">
+            <!--h5 class="card-title">{{auction}}</h5-->
+            <p class="card-text">
+                <a href="{%url 'auction_details' auction.id %}">
+                    {{auction}}
+                </a>
+            </p>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Bid: {{auction.bid}} </small>
+            <a href="{%url 'end_auction' auction.id %}" class="btn btn-success">End Auction</a>
+        </div>
+    </div>
+    {% endif %}
+
+    {% empty %}
+    <div class="center_h2" style="padding: 70px 0">
+        <button type="button" class="btn btn-primary">
+            <span class="badge badge-warning">Nothing selling </span>
+        </button>
+    </div>
+    {% endfor%}
+
+</div>
+
+
+{% endblock content%}
