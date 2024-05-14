@@ -13,7 +13,20 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "auctions", "static"),)
+
+#direct path where we like django to store files
+#this files are store in the system and not in the database
+#is the directory where upload
+# we are going to store in media directory
+STATIC_URL = '/static/'
+#MEDIA_ROOT is for server path to store files in the computer.
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+#MEDIA_URL is the reference URL for browser to access the files over Http.
+MEDIA_URL = '/media/'
 
 
 # Quick-start development settings - unsuitable for production
@@ -25,7 +38,7 @@ SECRET_KEY = '6ps8j!crjgrxt34cqbqn7x&b3y%(fny8k8nh21+qa)%ws3fh!q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.0.0.124']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -124,20 +137,9 @@ LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'index'
 LOGIN_URL = 'login'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
 
-#direct path where we like django to store files
-#this files are store in the system and not in the database
-#is the directory where upload
-# we are going to store in media directory
-STATIC_URL = '/static/'
-#MEDIA_ROOT is for server path to store files in the computer.
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-#MEDIA_URL is the reference URL for browser to access the files over Http.
-MEDIA_URL = '/media/'
+
 
 from django.contrib.messages import constants as messages
 
@@ -148,3 +150,4 @@ MESSAGE_TAGS = {
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
 }
+DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
